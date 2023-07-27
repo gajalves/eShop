@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace eShop.Catalog.Core.Entities
 {
@@ -11,6 +12,8 @@ namespace eShop.Catalog.Core.Entities
         public string ImageFile { get; set; }
         public ProductBrand Brands { get; set; }
         public ProductType Types { get; set; }
+
+        [BsonRepresentation(BsonType.Decimal128)]
         public decimal Price { get; set; }
     }
 }
