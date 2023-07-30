@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\eShop.Catalog.Application\eShop.Catalog.Application.csproj" />
     <ProjectReference Include="..\eShop.Catalog.Core\eShop.Catalog.Core.csproj" />
   </ItemGroup>
