@@ -25,18 +25,17 @@ namespace eShop.Catalog.Infra.Repositories
         public async Task<bool> DeleteProduct(string id)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
-            DeleteResult deleteResult = await _context
-                .Products
-                .DeleteOneAsync(filter);
+            DeleteResult deleteResult = await _context.Products
+                                                      .DeleteOneAsync(filter);
+            
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
 
         public async Task<IEnumerable<ProductBrand>> GetBrands()
         {
-            return await _context
-           .Brands
-           .Find(b => true)
-           .ToListAsync();
+            return await _context.Brands
+                                 .Find(b => true)
+                                 .ToListAsync();
         }
 
         public async Task<Product> GetProduct(string id)
