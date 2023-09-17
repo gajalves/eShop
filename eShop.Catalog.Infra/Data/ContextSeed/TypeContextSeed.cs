@@ -9,7 +9,7 @@ namespace eShop.Catalog.Infra.Data.ContextSeed
         public static void SeedData(IMongoCollection<ProductType> collection)
         {
             var typeAlreadyExists = collection.Find(type => true).Any();
-            var path = Path.Combine("Data", "SeedData", "types.json");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "SeedData", "types.json");
 
             if (!typeAlreadyExists)
             {

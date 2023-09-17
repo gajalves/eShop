@@ -9,8 +9,7 @@ namespace eShop.Catalog.Infra.Data.ContextSeed
         public static void SeedData(IMongoCollection<ProductBrand> collection)
         {
             var brandsAlreadyExists = collection.Find(brand => true).Any();
-            var path = Path.Combine("Data", "SeedData", "brands.json");
-
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "SeedData", "brands.json");            
             if (!brandsAlreadyExists)
             {
                 var brandsToDeserialize = File.ReadAllText(path);

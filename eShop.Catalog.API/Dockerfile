@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["eShop.Catalog.API/eShop.Catalog.API.csproj", "eShop.Catalog.API/"]
+COPY ["eShop.Catalog.Application/eShop.Catalog.Application.csproj", "eShop.Catalog.Application/"]
+COPY ["eShop.Catalog.Core/eShop.Catalog.Core.csproj", "eShop.Catalog.Core/"]
+COPY ["eShop.Catalog.Infra/eShop.Catalog.Infra.csproj", "eShop.Catalog.Infra/"]
 RUN dotnet restore "eShop.Catalog.API/eShop.Catalog.API.csproj"
 COPY . .
 WORKDIR "/src/eShop.Catalog.API"
