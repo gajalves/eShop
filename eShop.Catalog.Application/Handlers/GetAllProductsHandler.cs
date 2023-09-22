@@ -2,11 +2,12 @@
 using eShop.Catalog.Application.Queries;
 using eShop.Catalog.Application.Responses;
 using eShop.Catalog.Core.Repositories.Interfaces;
+using eShop.Catalog.Core.Specs;
 using MediatR;
 
 namespace eShop.Catalog.Application.Handlers
 {
-    public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, IList<ProductResponse>>
+    public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, Pagination<ProductResponse>>
     {
         private readonly IProductRepository _repository;
 
@@ -15,11 +16,11 @@ namespace eShop.Catalog.Application.Handlers
             _repository = repository;
         }
 
-        public async Task<IList<ProductResponse>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+        public async Task<Pagination<ProductResponse>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = await _repository.GetProducts();
+            var products = await _repository.GetProducts(request.CatalogSpecParams);
 
-            var productsResponde = ProductMapper.Mapper.Map<IList<ProductResponse>>(products);
+            var productsResponde = ProductMapper.Mapper.Map<Pagination<ProductResponse>>(products);
 
             return productsResponde;
         }

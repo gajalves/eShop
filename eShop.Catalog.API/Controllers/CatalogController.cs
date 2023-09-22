@@ -1,6 +1,7 @@
 ﻿using eShop.Catalog.Application.Commands;
 using eShop.Catalog.Application.Queries;
 using eShop.Catalog.Application.Responses;
+using eShop.Catalog.Core.Specs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -51,9 +52,9 @@ namespace eShop.Catalog.API.Controllers
         [HttpGet]
         [Route("GetAllProducts")]
         [ProducesResponseType(typeof(IList<ProductResponse>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IList<ProductResponse>>> GetAllProducts()
+        public async Task<ActionResult<IList<ProductResponse>>> GetAllProducts([FromQuery] CatalogSpecParams catalogSpecParams)
         {
-            var query = new GetAllProductsQuery();
+            var query = new GetAllProductsQuery(catalogSpecParams);
             var result = await _mediator.Send(query);
 
             return Ok(result);
