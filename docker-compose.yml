@@ -8,4 +8,4 @@ services:
     image: ${DOCKER_REGISTRY-}eshopcatalogapi
     build:
       context: .
-      dockerfile: eShop.Catalog.API/Dockerfile
+      dockerfile: src/Services/Catalog/eShop.Catalog.API/Dockerfile
