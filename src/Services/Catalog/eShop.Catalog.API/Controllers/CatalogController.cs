@@ -16,17 +16,7 @@ namespace eShop.Catalog.API.Controllers
         {
             _mediator = mediator;
         }
-
-        [HttpGet("teste")]
-        public IActionResult Teste()
-        {
-            return Ok(new
-            {
-                message = "Deu bom"
-            }
-            );
-        }
-        
+                
         [HttpGet]
         [Route("[action]/{id}", Name = "GetProductById")]
         [ProducesResponseType(typeof(ProductResponse), (int)HttpStatusCode.OK)]
