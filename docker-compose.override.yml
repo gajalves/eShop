@@ -8,12 +8,17 @@ services:
       - "27017:27017"
     volumes:
       - /data/db
+   
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+      - "6379:6379"
 
   eshop.catalog.api:
     container_name: eshop.catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-#      - ASPNETCORE_URLS=http://*:9000
       - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
       - "DatabaseSettings__DatabaseName=CatalogDb"
       - "DatabaseSettings__CollectionName=Products"
@@ -24,3 +29,13 @@ services:
       - catalogdb
     ports:
       - "9000:80"
+
+  eshop.basket.api:
+    container_name: eshop.basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings__ConnectionString=basketdb:6379"   
+    depends_on:
+      - basketdb
+    ports:
+      - "9001:80"

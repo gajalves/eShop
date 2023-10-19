@@ -29,6 +29,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration["CacheSettings:ConnectionString"];
 });
 
+builder.Services.AddApiVersioning();
 builder.Services.AddHealthChecks()
             .AddRedis(builder.Configuration["CacheSettings:ConnectionString"], "Redis Health", HealthStatus.Degraded);
 

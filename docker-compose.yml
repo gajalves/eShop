@@ -4,8 +4,17 @@ services:
   catalogdb:
     image: mongo
 
+  basketdb:
+    image: redis:alpine
+
   eshop.catalog.api:
     image: ${DOCKER_REGISTRY-}eshopcatalogapi
     build:
       context: .
       dockerfile: src/Services/Catalog/eShop.Catalog.API/Dockerfile
+
+  eshop.basket.api:
+    image: ${DOCKER_REGISTRY-}eshopbasketapi
+    build:
+      context: .
+      dockerfile: src/Services/Basket/eShop.Basket.API/Dockerfile
