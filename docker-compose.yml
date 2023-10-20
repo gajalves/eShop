@@ -7,6 +7,9 @@ services:
   basketdb:
     image: redis:alpine
 
+  portainer:
+    image: portainer/portainer-ce
+
   eshop.catalog.api:
     image: ${DOCKER_REGISTRY-}eshopcatalogapi
     build:
@@ -18,3 +21,7 @@ services:
     build:
       context: .
       dockerfile: src/Services/Basket/eShop.Basket.API/Dockerfile
+
+volumes:
+  mongo_data:
+  portainer_data:
