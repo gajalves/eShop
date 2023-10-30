@@ -19,7 +19,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup>    
     <ProjectReference Include="..\eShop.Basket.Application\eShop.Basket.Application.csproj" />
     <ProjectReference Include="..\eShop.Basket.Infra\eShop.Basket.Infra.csproj" />
   </ItemGroup>
