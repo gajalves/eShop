@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using eShop.Discount.Core.Entities;
 using eShop.Discount.Core.Repositories;
 using Microsoft.Extensions.Configuration;

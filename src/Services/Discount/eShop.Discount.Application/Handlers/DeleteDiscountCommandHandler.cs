@@ -1,4 +1,4 @@
-﻿using eShop.Discount.Application.Commands;
+using eShop.Discount.Application.Commands;
 using eShop.Discount.Core.Repositories;
 using MediatR;
 

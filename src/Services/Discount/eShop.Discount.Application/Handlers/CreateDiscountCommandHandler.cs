@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using eShop.Discount.Application.Protos;
 using eShop.Discount.Application.Commands;
 using eShop.Discount.Core.Entities;

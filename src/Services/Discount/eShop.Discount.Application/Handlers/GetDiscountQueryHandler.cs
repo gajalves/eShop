@@ -1,4 +1,4 @@
-﻿using eShop.Discount.Application.Protos;
+using eShop.Discount.Application.Protos;
 using eShop.Discount.Application.Queries;
 using eShop.Discount.Core.Repositories;
 using Grpc.Core;

@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -46,7 +46,6 @@ namespace eShop.Discount.Infra.Extensions
                                                 Description TEXT,
                                                 Amount INT)";
             cmd.ExecuteNonQuery();
-
             cmd.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Adidas Quick Force Indoor Badminton Shoes', 'Shoe Discount', 500);";
             cmd.ExecuteNonQuery();
 

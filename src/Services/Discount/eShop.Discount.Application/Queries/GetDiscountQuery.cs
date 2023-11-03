@@ -1,4 +1,4 @@
-﻿using eShop.Discount.Application.Protos;
+using eShop.Discount.Application.Protos;
 using MediatR;
 
 namespace eShop.Discount.Application.Queries
