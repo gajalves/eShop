@@ -1,15 +1,15 @@
-﻿using Discount.Grpc.Protos;
+using eShop.Discount.Application.Protos;
 using MediatR;
 
 namespace eShop.Discount.Application.Queries
 {
     public class GetDiscountQuery : IRequest<CouponModel>
     {
-        public string Name { get; set; }
+        public string ProductName { get; set; }
 
-        public GetDiscountQuery(string name)
+        public GetDiscountQuery(string productName)
         {
-            Name = name;
+            ProductName = productName;
         }
     }
 }

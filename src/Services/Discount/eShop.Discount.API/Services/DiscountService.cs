@@ -1,4 +1,4 @@
-﻿using Discount.Grpc.Protos;
+using eShop.Discount.Application.Protos;
 using eShop.Discount.Application.Commands;
 using eShop.Discount.Application.Queries;
 using Grpc.Core;
@@ -19,9 +19,9 @@ namespace eShop.Discount.API.Services
 
         public override async Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
         {
-            var query = new GetDiscountQuery(request.Name);
+            var query = new GetDiscountQuery(request.ProductName);
             var result = await _mediator.Send(query);
-            _logger.LogInformation($"Discount is retrieved for the Product Name: {request.Name} and Amount : {result.Amount}");
+            _logger.LogInformation($"Discount is retrieved for the Product Name: {request.ProductName} and Amount : {result.Amount}");
             return result;
         }
 
@@ -29,12 +29,12 @@ namespace eShop.Discount.API.Services
         {
             var cmd = new CreateDiscountCommand
             {
-                Name = request.Coupon.Name,
+                ProductName = request.Coupon.ProductName,
                 Amount = request.Coupon.Amount,
                 Description = request.Coupon.Description
             };
             var result = await _mediator.Send(cmd);
-            _logger.LogInformation($"Discount is successfully created for the Product Name: {result.Name}");
+            _logger.LogInformation($"Discount is successfully created for the Product Name: {result.ProductName}");
             return result;
         }
 
@@ -43,18 +43,18 @@ namespace eShop.Discount.API.Services
             var cmd = new UpdateDiscountCommand
             {
                 Id = request.Coupon.Id,
-                Name = request.Coupon.Name,
+                ProductName = request.Coupon.ProductName,
                 Amount = request.Coupon.Amount,
                 Description = request.Coupon.Description
             };
             var result = await _mediator.Send(cmd);
-            _logger.LogInformation($"Discount is successfully updated Product Name: {result.Name}");
+            _logger.LogInformation($"Discount is successfully updated Product Name: {result.ProductName}");
             return result;
         }
 
         public override async Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request, ServerCallContext context)
         {
-            var cmd = new DeleteDiscountCommand(request.Name);
+            var cmd = new DeleteDiscountCommand(request.ProductName);
             var deleted = await _mediator.Send(cmd);
             var response = new DeleteDiscountResponse
             {

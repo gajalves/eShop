@@ -1,6 +1,6 @@
-﻿using Discount.Grpc.Protos;
+using eShop.Discount.Application.Protos;
 using eShop.Discount.Application.Queries;
-using eShop.Discount.Core.Repositories.Interfaces;
+using eShop.Discount.Core.Repositories;
 using Grpc.Core;
 using MediatR;
 
@@ -8,20 +8,19 @@ namespace eShop.Discount.Application.Handlers
 {
     public class GetDiscountQueryHandler : IRequestHandler<GetDiscountQuery, CouponModel>
     {
-        private IDiscountRepository _repository;
+        private readonly IDiscountRepository _discountRepository;
 
-        public GetDiscountQueryHandler(IDiscountRepository repository)
+        public GetDiscountQueryHandler(IDiscountRepository discountRepository)
         {
-            _repository = repository;
+            _discountRepository = discountRepository;
         }
-
         public async Task<CouponModel> Handle(GetDiscountQuery request, CancellationToken cancellationToken)
         {
-            var coupon = await _repository.GetDiscount(request.Name);
+            var coupon = await _discountRepository.GetDiscount(request.ProductName);
             if (coupon == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound,
-                    $"Discount with the product name = {request.Name} not found"));
+                    $"Discount with the product name = {request.ProductName} not found"));
             }
             //TODO: Exercise Follow Product Mapper kind of example
             var couponModel = new CouponModel
@@ -29,7 +28,7 @@ namespace eShop.Discount.Application.Handlers
                 Id = coupon.Id,
                 Amount = coupon.Amount,
                 Description = coupon.Description,
-                Name = coupon.Name
+                ProductName = coupon.ProductName
             };
             return couponModel;
         }

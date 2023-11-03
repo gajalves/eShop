@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Discount.Grpc.Protos;
+using AutoMapper;
+using eShop.Discount.Application.Protos;
 using eShop.Discount.Core.Entities;
 
 namespace eShop.Discount.Application.Mapper

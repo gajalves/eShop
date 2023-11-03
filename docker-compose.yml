@@ -15,7 +15,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-
+    
   eshop.catalog.api:
     image: ${DOCKER_REGISTRY-}eshopcatalogapi
     build:

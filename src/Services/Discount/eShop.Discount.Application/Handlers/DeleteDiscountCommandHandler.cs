@@ -1,20 +1,20 @@
-﻿using eShop.Discount.Application.Commands;
-using eShop.Discount.Core.Repositories.Interfaces;
+using eShop.Discount.Application.Commands;
+using eShop.Discount.Core.Repositories;
 using MediatR;
 
 namespace eShop.Discount.Application.Handlers
 {
     public class DeleteDiscountCommandHandler : IRequestHandler<DeleteDiscountCommand, bool>
     {
-        private readonly IDiscountRepository _repository;
+        private readonly IDiscountRepository _discountRepository;
 
-        public DeleteDiscountCommandHandler(IDiscountRepository repository)
+        public DeleteDiscountCommandHandler(IDiscountRepository discountRepository)
         {
-            _repository = repository;
+            _discountRepository = discountRepository;
         }
         public async Task<bool> Handle(DeleteDiscountCommand request, CancellationToken cancellationToken)
         {
-            var deleted = await _repository.DeleteDiscount(request.Name);
+            var deleted = await _discountRepository.DeleteDiscount(request.ProductName);
             return deleted;
         }
     }

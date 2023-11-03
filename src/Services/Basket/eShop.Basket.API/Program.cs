@@ -1,3 +1,5 @@
+using eShop.Discount.Application.Protos;
+using eShop.Basket.Application.GrpcService;
 using eShop.Basket.Application.Handlers;
 using eShop.Basket.Core.Repositories.Interfaces;
 using eShop.Basket.Infra.Repositories;
@@ -36,6 +38,10 @@ builder.Services.AddHealthChecks()
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateShoppingCartCommandHandler).GetTypeInfo().Assembly));
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<DiscountGrpcService>();
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
+            (o => o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]));
+
 
 var app = builder.Build();
 

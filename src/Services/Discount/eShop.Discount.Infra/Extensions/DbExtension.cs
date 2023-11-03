@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -8,7 +8,7 @@ namespace eShop.Discount.Infra.Extensions
 {
     public static class DbExtension
     {
-        public static IHost MigrateDataBase<TContext>(this IHost host)
+        public static IHost MigrateDatabase<TContext>(this IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
@@ -42,15 +42,14 @@ namespace eShop.Discount.Infra.Extensions
             cmd.CommandText = "DROP TABLE IF EXISTS Coupon";
             cmd.ExecuteNonQuery();
             cmd.CommandText = @"CREATE TABLE Coupon(Id SERIAL PRIMARY KEY, 
-                                                Name VARCHAR(500) NOT NULL,
+                                                ProductName VARCHAR(500) NOT NULL,
                                                 Description TEXT,
                                                 Amount INT)";
             cmd.ExecuteNonQuery();
-
-            cmd.CommandText = "INSERT INTO Coupon(Name, Description, Amount) VALUES('Adidas Quick Force Indoor Badminton Shoes', 'Shoe Discount', 500);";
+            cmd.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Adidas Quick Force Indoor Badminton Shoes', 'Shoe Discount', 500);";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "INSERT INTO Coupon(Name, Description, Amount) VALUES('Yonex VCORE Pro 100 A Tennis Racquet (270gm, Strung)', 'Racquet Discount', 700);";
+            cmd.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('Yonex VCORE Pro 100 A Tennis Racquet (270gm, Strung)', 'Racquet Discount', 700);";
             cmd.ExecuteNonQuery();
         }
     }

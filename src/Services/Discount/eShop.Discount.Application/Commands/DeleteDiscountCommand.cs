@@ -3,12 +3,12 @@
 namespace eShop.Discount.Application.Commands
 {
     public class DeleteDiscountCommand : IRequest<bool>
-{
-    public string Name { get; set; }
-
-    public DeleteDiscountCommand(string name)
     {
-        Name = name;
+        public string ProductName { get; set; }
+
+        public DeleteDiscountCommand(string productName)
+        {
+            ProductName = productName;
+        }
     }
-}
 }
