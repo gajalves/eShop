@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Services/Discount/eShop.Discount.API/eShop.Discount.API.csproj", "src/Services/Discount/eShop.Discount.API/"]
+COPY ["src/Services/Discount/eShop.Discount.Application/eShop.Discount.Application.csproj", "src/Services/Discount/eShop.Discount.Application/"]
+COPY ["src/Services/Discount/eShop.Discount.Core/eShop.Discount.Core.csproj", "src/Services/Discount/eShop.Discount.Core/"]
+COPY ["src/Services/Discount/eShop.Discount.Infra/eShop.Discount.Infra.csproj", "src/Services/Discount/eShop.Discount.Infra/"]
 RUN dotnet restore "src/Services/Discount/eShop.Discount.API/eShop.Discount.API.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Discount/eShop.Discount.API"
